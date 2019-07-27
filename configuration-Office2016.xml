@@ -1,0 +1,33 @@
+<!--
+https://docs.microsoft.com/zh-cn/deployoffice/overview-of-the-office-2016-deployment-tool
+https://www.ithome.com/html/office/178814.htm
+-->
+
+<Configuration>
+  <Add OfficeClientEdition="32" SourcePath="D:\">
+    <Product ID="ProPlusRetail">
+      <Language ID="zh-CN" />
+      <ExcludeApp ID="Access" />
+      <!-- <ExcludeApp ID="Excel" /> -->
+      <ExcludeApp ID="Groove" /> <!-- OneDrive for Business -->
+      <ExcludeApp ID="InfoPath" />
+      <ExcludeApp ID="Lync" /> <!-- Skype for Business -->
+      <ExcludeApp ID="OneDrive" />
+      <ExcludeApp ID="OneDriveforbusiness" />
+      <!-- <ExcludeApp ID="OneNote" /> -->
+      <ExcludeApp ID="Outlook" />
+      <!-- <ExcludeApp ID="PowerPoint" /> -->
+      <ExcludeApp ID="Project" />
+      <ExcludeApp ID="Publisher" />
+      <ExcludeApp ID="SharePointDesigner" />
+      <ExcludeApp ID="Skype" />
+      <ExcludeApp ID="Skypeforbusiness" />
+      <ExcludeApp ID="Visio" />
+      <!-- <ExcludeApp ID="Word" /> -->
+    </Product>
+  </Add>
+  <!--  <RemoveMSI All="True" /> -->
+  <Display Level="Full" AcceptEULA="TRUE" />
+  <Property Name="AUTOACTIVATE" Value="FALSE" />
+  <Updates Enabled="FALSE" />
+</Configuration>
