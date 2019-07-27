@@ -133,9 +133,11 @@ VBoxManage modifyhd "$vmfolder/$vmname/$vmname-disk.vdi" --compact
 ## 桥接网卡, 分享网络
 
 * Host 可 ssh 登录 win7(自带sshd服务)
+
   添加 Host `～/.ssh/id_rsa.pub` 到 win7 IEUser 的 `%HOMEDRIVE%%HOMEPATH%\.ssh\authorized_keys`
 
 * 通过 rvpn 接口, 登录校内服务器
+
   编辑 `～/.ssh/config`
   ```
   ### vitrualbox bridge
