@@ -164,6 +164,7 @@ VBoxManage modifyhd "$vmfolder/$vmname/$vmname-disk.vdi" --compact
         + 先虚拟机全屏模式 `右 ctrl+F`
         + 再 awesome 全屏虚拟机窗口, 需两次生效, 即 2 x (点窗口 + `右 ctrl` + `Super+F`)
     - 退出虚拟机全屏显示 `右 ctrl+F`
+    - or use `VBoxSDL --startvm $vmname` to [switch between win7 & arch](https://bbs.archlinux.org/viewtopic.php?id=165822)
 
 
 # Advanced Topic: PCI Passthrough
