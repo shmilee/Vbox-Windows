@@ -70,6 +70,8 @@ VBoxManage import $PWD/IE11.Win7.VirtualBox.ova --vsys 0 \
 
 * 添加共享文件夹: Map Network Drive `Z:`
 
+* Thumbs.db: `gpedit.msc -> 用户配置 -> 管理模板 -> Windows组件 -> Windows资源管理器 -> 关闭隐藏的 thumbs.db 文件中的缩略图缓存 -> 已启用`
+
 * 时区 +8, 时间显示 HH:mm
 
 * 添加 [Rime输入法](https://rime.im), ~~[微软拼音输入法 2010](https://www.microsoft.com/zh-cn/download/details.aspx?id=28969)~~
