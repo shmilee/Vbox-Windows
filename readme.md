@@ -166,6 +166,10 @@ VBoxManage modifyhd "$vmfolder/$vmname/$vmname-disk.vdi" --compact
     - 退出虚拟机全屏显示 `右 ctrl+F`
     - or use `VBoxSDL --startvm $vmname` to [switch between win7 & arch](https://bbs.archlinux.org/viewtopic.php?id=165822)
 
+## Open files in a VirtualBox Windows guest from Arch host
+
+* Install `winboxopen`
+* [VBoxManage guestcontrol](https://www.virtualbox.org/manual/ch08.html#vboxmanage-guestcontrol)
 
 # Advanced Topic: PCI Passthrough
 

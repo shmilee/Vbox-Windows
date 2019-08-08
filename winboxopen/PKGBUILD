@@ -1,0 +1,19 @@
+# Maintainer: shmilee <echo c2htaWxlZS56anVAZ21haWwuY29tCg==|base64 -d>
+
+pkgname=winboxopen
+pkgver=1.0
+pkgrel=1
+pkgdesc="Open files in a VirtualBox Windows guest from the Linux host"
+arch=('any')
+url='https://github.com/shmilee/Vbox-Windows'
+license=('GPL')
+depends=('python' 'virtualbox')
+source=('winboxopen.py' 'winboxopen.desktop')
+sha1sums=('92f9f11337eabdb28adf3c706a07c8126b41211a'
+          'f692078820b66f82b25739ce2d25d0630079a4b0')
+
+package() {
+    cd "$srcdir"
+    install -Dm755 winboxopen.py "$pkgdir"/usr/bin/winboxopen
+    install -Dm644 winboxopen.desktop "$pkgdir"/usr/share/applications/winboxopen.desktop
+}
