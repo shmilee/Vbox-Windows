@@ -13,7 +13,7 @@ import argparse
 import subprocess
 
 __scriptname__ = 'winboxopen'
-__version__ = '1.0'
+__version__ = '1.2'
 __author__ = 'shmilee'
 __configpath__ = '~/.%s.pck' % __scriptname__
 
@@ -30,6 +30,8 @@ class VMinfo(object):
         self.netdrive = netdrive   # {}
         self.user = user
         self.__passwd = passwd
+        self.host_webcams = tuple(c[0] for c in self.get_info_from_cmd(
+            ["VBoxManage", "list", "webcams"], r'^(/dev/.*)') if c)
 
     @staticmethod
     def get_info_from_cmd(command, pattern, groupdict=False):
@@ -122,7 +124,27 @@ class VMinfo(object):
                 "--", "cmd", "/c"]
 
     def open_path(self, path):
-        '''Open file by application in guest'''
+        '''Open file by application or attach webcam in guest'''
+        if path in self.host_webcams:
+            if self.vmstate != 'running':
+                self.start_vm()
+            if self.vmstate == 'running':
+                cmd = ["VBoxManage", "controlvm",
+                       self.name, "webcam", "attach", path]
+                print("Attaching webcam '%s' to machine '%s': %s ..."
+                      % (path, self.name, ' '.join(cmd)))
+                proc = subprocess.Popen(
+                    cmd, universal_newlines=True,
+                    stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                stdout, stderr = proc.communicate()
+                if proc.returncode != 0:
+                    print(stderr)
+            else:
+                print("Error: machine '%s' is not running!" % self.name)
+            return
+        if not os.path.isfile(path):
+            print("Error: '%s' is not a file!" % path)
+            return
         win_path = self.convert_path(path)
         if win_path:
             if self.graphicsmode != '50':
@@ -134,7 +156,7 @@ class VMinfo(object):
                     self.cmd_openpath + [win_path],
                     stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             else:
-                print("Error: machine '%s' Graphics Mode not active!" % name)
+                print("Error: machine '%s' Graphics Mode not active!" % self.name)
 
     @classmethod
     def get_vmlist(cls):
@@ -241,7 +263,8 @@ def set_default_guest(config_path, name):
 def generate_parser():
     parser = argparse.ArgumentParser(
         prog=__scriptname__,
-        description="Open files in a VirtualBox Windows guest from the Linux host",
+        description=("Open files in a VirtualBox Windows guest from the Linux host, "
+                     "if file is a webcam path, just attach it to guest."),
         add_help=False,
     )
     optgrp = parser.add_argument_group('options')
@@ -295,13 +318,10 @@ if __name__ == '__main__':
             print("%s v%s" % (__scriptname__, __version__))
             sys.exit()
         if args.file:
-            if not os.path.isfile(args.file):
-                print("Error: '%s' is not a file!" % args.file)
-            else:
-                with open(config_path, 'rb') as handle:
-                    c = pickle.load(handle)
-                vm = VMinfo.get_vminfo(c['machine'][c['default']])
-                vm.open_path(args.file)
+            with open(config_path, 'rb') as handle:
+                c = pickle.load(handle)
+            vm = VMinfo.get_vminfo(c['machine'][c['default']])
+            vm.open_path(args.file)
         else:
             parser.print_help()
         sys.exit()
