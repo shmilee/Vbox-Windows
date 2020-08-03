@@ -10,6 +10,14 @@ Not recommended.
 
 ## Download free virtual machine from [microsoft](https://developer.microsoft.com/en-us/microsoft-edge/tools/vms/)
 
+URL backup:
+
+```
+wget -c https://az792536.vo.msecnd.net/vms/VMBuild_20180102/VirtualBox/IE11/IE11.Win7.VirtualBox.zip
+wget -c https://az792536.vo.msecnd.net/vms/VMBuild_20180102/VirtualBox/IE11/IE11.Win81.VirtualBox.zip
+wget -c https://az792536.vo.msecnd.net/vms/VMBuild_20180425/VirtualBox/MSEdge/MSEdge.Win10.VirtualBox.zip
+```
+
 Select virtual machine: "IE11 on Win7 (x86)" ~~or "IE11 on Win81 (x86)", "MSEdge on Win10 (x64) Stable 1809"~~
 
 Default password "Passw0rd!"
