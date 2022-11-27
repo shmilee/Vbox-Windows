@@ -174,8 +174,9 @@ VBoxManage modifyhd "$vmfolder/$vmname/$vmname-disk.vdi" --compact
         + 先虚拟机全屏模式 `右 ctrl+F`
         + 再 awesome 全屏虚拟机窗口, 需两次生效, 即 2 x (点窗口 + `右 ctrl` + `Super+F`)
     - 退出虚拟机全屏显示 `右 ctrl+F`
-    - or use `VBoxSDL --startvm $vmname` to [switch between win7 & arch](https://bbs.archlinux.org/viewtopic.php?id=165822)
+    - or use ~~`VBoxSDL --startvm $vmname`~~ to [switch between win7 & arch](https://bbs.archlinux.org/viewtopic.php?id=165822)
         + Issue: VBoxSDL 开机花屏. 解决: 关闭 3D 加速 or 关机二次启动.
+        + [VBoxSDL not officially supported](https://forums.virtualbox.org/viewtopic.php?f=7&t=107429)
 
 ## Open files in a VirtualBox Windows guest from Arch host
 
